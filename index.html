@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <style>
+
+<head>
+    <style>
         * {
             font-family: "Public Sans";
             padding: 0px;
@@ -9,15 +10,15 @@
             box-sizing: border-box;
         }
 
-        main {
+      main {
             background-image: url("/painting.webp");
             width: 100%;
             min-height: 100vh;
             background-repeat: no-repeat;
             background-position: top;
             background-position-y: -70px;
-            background-color: rgb(0,0,0);
-            color:#fff;
+            background-color: #000000;
+            color: #eeeeee;
             background-position-x: -200px;
         }
 
@@ -29,6 +30,7 @@
             z-index: 1000;
             background-color: transparent;
         }
+
         #eydtfjh {
             width: 404px;
             height: 310px;
@@ -38,163 +40,327 @@
             display: grid;
             place-content: center;
         }
-        #eydtfjh em{
-            font-size:13px;
+
+        #eydtfjh em {
+            font-size: 13px;
         }
 
-        #ghrtd {           
+        #ghrtd {
             font-size: 18px;
             font-weight: bold;
             padding: 10px;
-            }
+        }
 
         #htfhb {
             font-size: 89px;
         }
 
-        #tools{
-        padding:10px;
-        z-index: 63245;
-        display:grid;
-        gap:12px;
-        position: absolute;
-        top:44%; 
-        right:3px;          
+        #tools {
+            padding: 10px;
+            z-index: 63245;
+            display: grid;
+            gap: 12px;
+            position: absolute;
+            top: 44%;
+            right: 3px;
         }
 
-        #tools_btn{
-        position: relative;
-        z-index: 63245;
-        padding:12px;
-        top:3px;
-        background-color:#333;
-        width:max-content;
-        cursor: pointer;
-        font-size:12px;
-        opacity: 0;
-        }
-        
-        #tools *{
-        text-decoration: none;
-        background-color:white;
+        #tools * {
+            text-decoration: none;
+            /* background-color: white; */
         }
 
-         #tools strong{
-         width:150px;
-         cursor:pointer;
-         height:50px;
-         background-color: rgb(0,0,0);
-          }
+      #tools strong {
+            width: 150px;
+            cursor: pointer;
+            height: 50px;
+            background-color: #000000;
+        }
 
-         #tools .tool{
-          width:97vw;
-          background-color:red;
-          height:60vh;
-          position: relative;
-          left:1%;
-          bottom: 14%;
-          padding:3px;
-         }
+        #tools .tool {
+            width: 100vw;
+            background-color: #000000;
+            height: 97vh;
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            z-index: 343;
+            padding: 3px;
+        }
 
-         #attribute{
-          font-size:8px;
-          position: fixed;
-          bottom:1px;
-         }
+        #tools .tool .content {
+            background-color: rgb(15, 15, 15);
+            width: 97%;
+            margin: auto;
+            height: 94vh;
+            border-radius: 6px;
+            padding: 6px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
 
-          @media (max-width:1069px){
+        #tools .tool #air_quality {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #tools .tool #air_quality form {
+            flex: 1;
+            padding: 12px;
+            background-color: #131212;
+        }
+
+        #tools .tool #air_quality form input,
+        button {
+            padding: 10px;
+            border-radius: 3px;
+            border: solid 1px gray;
+        }
+
+        #tools .tool #air_quality form div {
+            padding: 8px 0px 0px 0px;
+            font-size: 10pt;
+            color: #585858;
+        }
+
+        #tools .tool #air_quality section {
+            flex: 1;
+            display: grid;
+        }
+
+        #tools .tool #air_quality section #aqi {
+            display: grid;
+            place-content: center;
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        #tools .tool #air_quality section #desc {
+            padding: 12px;
+            background-color: #030303;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #cccccc;
+        }
+
+        #tools .tool #air_quality section #desc h2 p {
+            font-size: 10pt;
+        }
+
+        #tools .tool #air_quality section #desc p {
+            font-size: 12px;
+        }
+
+        #tools_btn {
+            position: relative;
+            z-index: 63249;
+            border-right: solid 1px #c1bbbb;
+            border-bottom: solid 1px #c1bbbb;
+            background-color: #000000;
+            padding: 3px;
+            cursor: pointer;
+            opacity: 0;
+            font-size: 10px;
+            width: min-content;
+        }
+
+        #attribute {
+            font-size: 8px;
+            position: fixed;
+            bottom: 1px;
+        }
+
+        @media (max-width:1069px) {
             main {
-            background-position-x: -620px;
-            background-position-y: 50vh;
-        }
-          }
-     </style>
-        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <title>VisitHeart</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+                background-position-x: -620px;
+                background-position-y: 50vh;
+            }
 
-        <main id="main">
-            <div onclick="abc()" id="tools_btn">Tools</div>
-            <div id="hjvtr"></div>
-            <div id="eydtfjh">
-                <div id="kjjf"></div>
-                <div id="ghrtd">
-                    <span id="hour"></span>
-                    <span id="gvj">:</span>
-                    <span id="minute"></span>
-                    <span id="gvj">:</span>
-                    <span id="seconds"></span>
-                </div>
-             <div id="htfhb">
-                </div>
-                 <div id="fjykj">
-                    <p id="ydtih"></p>
-                </div>
-                <div>🐐</div>
-                <em>May you got bless!</em>
+            #tools .tool #air_quality {
+                flex-direction: column;
+            }
+
+            #tools .tool #air_quality section {
+                flex: 10;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>VisitHeart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <main id="main">
+        <div onclick="abc()" id="tools_btn">Shut</div>
+        <div id="hjvtr"></div>
+        <div id="eydtfjh">
+            <div id="kjjf"></div>
+            <div id="ghrtd">
+                <span id="hour"></span>
+                <span id="gvj">:</span>
+                <span id="minute"></span>
+                <span id="gvj">:</span>
+                <span id="seconds"></span>
             </div>
-            <div id="tools">
-                <h1>Web Tools</h1>
+            <div id="htfhb">
+            </div>
+            <div id="fjykj">
+                <p id="ydtih"></p>
+            </div>
+            <div>May you got bless</div>
+        </div>
+        <div id="tools">
+            <h1>Medical Tools</h1>
+            <div>
+                <strong onclick="tool('tool1')">Diet</strong>
+            </div>
+            <div>
+                <strong id="air_quality" onclick="tool('tool2')">Air Quality</strong>
+            </div>
+            <div>
+                <strong onclick="tool('tool3')">Pollution</strong>
+            </div>
+        </div>
+        <code id="attribute">
+                visitheart.com
+            </code>
+    </main>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
+    integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const pinIt = {
+        pin: "pKn873OBShoVD7iS9U1I9Q==WS8rZnDXhtDOGIC3",
+        api: atob("aHR0cHM6Ly9hcGkuYXBpLW5pbmphcy5jb20=")
+    };
+    const datEle = document.getElementById("kjjf"), yarEle = document.getElementById("ydtih"), hour = document.getElementById("hour"), minute = document.getElementById("minute"), htfhb = document.getElementById("htfhb"), seconds = document.getElementById("seconds"); let dateObj = new Date(), dayNbr = dateObj.getDay() - 1, weekDayEach = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], yearNbr = dateObj.getFullYear(), hourNbr = dateObj.getHours(), minuteNbr = dateObj.getMinutes(), amPm = dateObj.toLocaleTimeString(), secNbr = dateObj.getSeconds(); datEle.innerHTML = weekDayEach[dayNbr]; yarEle.innerHTML = "All rights reserved " + yearNbr; hour.innerHTML = hourNbr; minute.innerHTML = dateObj.getMinutes(); htfhb.innerHTML = amPm.slice(8); seconds.innerHTML = secNbr; setInterval(() => { dateObj = new Date(), dayNbr = dateObj.getDay() - 1, yearNbr = dateObj.getFullYear(), hourNbr = dateObj.getHours(), minuteNbr = dateObj.getMinutes(), amPm = dateObj.toLocaleTimeString(), secNbr = dateObj.getSeconds(); datEle.innerHTML = weekDayEach[dayNbr]; yarEle.innerHTML = "All rights reserved " + yearNbr; hour.innerHTML = hourNbr; minute.innerHTML = dateObj.getMinutes(); htfhb.innerHTML = amPm.slice(8); seconds.innerHTML = secNbr; }, 1000);
+    //
+    const tools = document.getElementById("tools");
+    const tools_btn = document.getElementById("tools_btn");
+    const air_quality = document.getElementById("air_quality");
+
+    //
+
+    function tool(str) {
+        tools_btn.style.opacity = "1";
+        if (str == "tool1") {
+            console.log("tool 1");
+            tools.innerHTML = `<div class="tool">
+                   <div class="content">Diet</div>
+       </div`;
+        }
+        else if (str == "tool2") {
+            tools.innerHTML = `<div class="tool">
+                   <div class="content" id="air_quality">
+                    <form id="form">
+                         <input id="formInput" required placeholder="Enter city" type="text"/>
+                         <button id="formBtn">Air Quality</button>
+                         <div id="formResult"></div>
+                    </form>
+                    <section>
+                     <div id="aqi">
+                      <span id="aqi_span">Loading</span>
+                      <span id="aqi_desc">&nbsp</span>
+                     </div>
+                     <div id="desc">
+                      <h2><span id="city_query"></span> <p id="air_quality_index"></p></h2>
+                      <p id="aqi_desc_statement"></p>
+                     </div>
+                    </section>
+                    </div>
+                </div>`;
+
+            const form = document.getElementById("form")
+            const formInput = document.getElementById("formInput")
+            const formBtn = document.getElementById("formBtn")
+            const formResult = document.getElementById("formResult")
+
+            form.addEventListener("submit", async function(event){
+                event.preventDefault();
+                const cityQuery = formInput.value.toLowerCase();
+                const formResult = document.getElementById("formResult")
+                const aqi_span = document.getElementById("aqi_span");
+                const aqi_desc = document.getElementById("aqi_desc");
+                const city_query = document.getElementById("city_query");
+                const air_quality_index = document.getElementById("air_quality_index");
+                const aqi_desc_statement = document.getElementById("aqi_desc_statement");
+                formResult.innerText="It is pending...";
+
+                try{
+                  const dataIt = await axios({
+                      method: "GET",
+                      url: pinIt.api + "/v1/airquality?city=" + cityQuery,
+                      headers: { "X-Api-Key": pinIt.pin },
+                  });
+
+                  aqi_desc_statement.innerText = ""
+                  formResult.innerText=""
+                  aqi_span.innerText = dataIt.data.overall_aqi;
+                  aqi_desc.innerText = " AQI";
+                  city_query.innerText = cityQuery[0].toUpperCase() + cityQuery.slice(1);
+                  air_quality_index.innerText = "(air quality Index)";
+                  aqi_desc_statement.innerText = `AQI means Air Quality Index. It is used for the quality of Air. More then 100 AQI defines poor quality, less show good Air Quality`;
+                  formInput.value = ""
+
+                }catch(err){
+                  aqi_desc_statement.innerText = "Result not available"
+                  air_quality_index.innerText = "";
+                  aqi_span.innerText = "";
+                  aqi_desc.innerText = "";
+                  city_query.innerText = cityQuery;
+                  formResult.innerText=""
+                }
+            })
+        }
+        else if (str == "tool3") {
+            console.log("tool 3");
+            tools.innerHTML = `<div class="tool">
+                   <div class="content">Pollution</div>
+                </div>`;
+
+        }
+    }
+
+    function abc() {
+        tools_btn.style.opacity = "0";
+        tools.innerHTML = `<h1>Medical Tools</h1>
                 <div>
-                    <strong onclick="tool('tool1')">Nutrition</strong>
+                    <strong onclick="tool('tool1')">Diet</strong>
                 </div>
                 <div>
                     <strong onclick="tool('tool2')">Air Quality</strong>
                 </div>
                 <div>
                     <strong onclick="tool('tool3')">Pollution</strong>
-                </div>
-            </div>
-            <code id="attribute">
-                visitheart.com
-            </code>
-        </main>
-    </body>
-    <script>
-    const datEle=document.getElementById("kjjf"),yarEle=document.getElementById("ydtih"),hour=document.getElementById("hour"),minute=document.getElementById("minute"),htfhb=document.getElementById("htfhb"),seconds=document.getElementById("seconds");let dateObj=new Date(),dayNbr=dateObj.getDay()-1,weekDayEach=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],yearNbr=dateObj.getFullYear(),hourNbr=dateObj.getHours(),minuteNbr=dateObj.getMinutes(),amPm=dateObj.toLocaleTimeString(),secNbr=dateObj.getSeconds();datEle.innerHTML=weekDayEach[dayNbr];yarEle.innerHTML="All rights reserved "+yearNbr;hour.innerHTML=hourNbr;minute.innerHTML=dateObj.getMinutes();htfhb.innerHTML=amPm.slice(8);seconds.innerHTML=secNbr;setInterval(()=>{dateObj=new Date(),dayNbr=dateObj.getDay()-1,yearNbr=dateObj.getFullYear(),hourNbr=dateObj.getHours(),minuteNbr=dateObj.getMinutes(),amPm=dateObj.toLocaleTimeString(),secNbr=dateObj.getSeconds();datEle.innerHTML=weekDayEach[dayNbr];yarEle.innerHTML="All rights reserved "+yearNbr;hour.innerHTML=hourNbr;minute.innerHTML=dateObj.getMinutes();htfhb.innerHTML=amPm.slice(8);seconds.innerHTML=secNbr;},1000)
-//
-    const tools = document.getElementById("tools")
-    const tools_btn = document.getElementById("tools_btn")
-//
-    function tool(str){
-      tools_btn.style.opacity="1"
-      if(str=="tool1"){
-       console.log("tool 1")
-       tools.innerHTML=`<div class="tool">
-           Nutrition
-       </div`
-      }
-      else if(str=="tool2"){
-       console.log("tool 2")
-       tools.innerHTML=`<div class="tool">Air Quality</div>`
-      }
-      else if(str=="tool3"){
-       console.log("tool 3")
-       tools.innerHTML=`<div class="tool">Pollution</div>`
-      }
-     }
+                </div>`;
+    }
 
-     function abc(){
-              tools_btn.style.opacity="0"
-               tools.innerHTML=`<h1>Web Tools</h1>
-                <div>
-                    <strong onclick="tool('tool1')">Nutrition</strong>
-                </div>
-                <div>
-                    <strong onclick="tool('tool3')">Air Quality</strong>
-                </div>
-                <div>
-                    <strong onclick="tool('tool2')">Pollution</strong>
-                </div>
-                <section>
-                    <div>------------------</div>
-                    <div>-----------</div>
-                </section>`
-      }
-    </script>
+    air_quality.addEventListener("click", async function () {
+        const cityQuery = "Multan";
+        const dataIt = await axios({
+            method: "GET",
+            url: pinIt.api + "/v1/airquality?city=" + cityQuery,
+            headers: { "X-Api-Key": pinIt.pin },
+        });
+        const aqi_span = document.getElementById("aqi_span");
+        const aqi_desc = document.getElementById("aqi_desc");
+        const city_query = document.getElementById("city_query");
+        const air_quality_index = document.getElementById("air_quality_index");
+        const aqi_desc_statement = document.getElementById("aqi_desc_statement");
+        aqi_span.innerText = dataIt.data.overall_aqi;
+        aqi_desc.innerText = " AQI";
+        city_query.innerText = cityQuery;
+        air_quality_index.innerText = "(air quality Index)";
+        aqi_desc_statement.innerText = `AQI means Air Quality Index. It is used for the quality of Air. More then 100 AQI defines poor quality, less show good Air Quality`;
+    })
+</script>
+
 </html>
