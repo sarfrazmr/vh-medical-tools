@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
+    <title>VisitHeart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900');
+
         * {
-            font-family: "Public Sans";
+            font-family: "Poppins", serif;
             padding: 0px;
             margin: 0px;
             box-sizing: border-box;
@@ -257,9 +262,10 @@
 
             #tools .tool #pollution {
                 flex-direction: column;
+
             }
 
-            #tools .tool #air_quality section {
+            #tools .tool #pollution section {
                 flex: 10;
             }
 
@@ -272,12 +278,6 @@
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>VisitHeart</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -318,9 +318,6 @@
             </code>
     </main>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
-    integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     const pinIt = {
         pin: "pKn873OBShoVD7iS9U1I9Q==WS8rZnDXhtDOGIC3",
@@ -374,30 +371,23 @@
                 const aqi_desc_statement = document.getElementById("aqi_desc_statement");
                 formResult.innerText = "It is pending...";
 
-                try {
-                    const dataIt = await axios({
-                        method: "GET",
-                        url: pinIt.api + "/v1/airquality?city=" + cityQuery,
-                        headers: { "X-Api-Key": pinIt.pin },
-                    });
-
+                await fetch(pinIt.api + "/v1/airquality?city=" + cityQuery, {
+                    method: 'GET',
+                    headers: { "X-Api-Key": pinIt.pin },
+                }).then(result => result.json()).then(function (result) {
+                    if (!result.overall_aqi || result.error) {
+                        formResult.innerText = "Result not available";
+                        return 0;
+                    }
                     aqi_desc_statement.innerText = "";
                     formResult.innerText = "";
-                    aqi_span.innerText = dataIt.data.overall_aqi;
+                    aqi_span.innerText = result.overall_aqi;
                     aqi_desc.innerText = " AQI";
                     city_query.innerText = cityQuery[0].toUpperCase() + cityQuery.slice(1);
                     air_quality_index.innerText = "(air quality Index)";
                     aqi_desc_statement.innerText = `AQI means Air Quality Index. It is used for the quality of Air. More then 100 AQI defines poor quality, less show good Air Quality`;
                     formInput.value = "";
-
-                } catch (err) {
-                    aqi_desc_statement.innerText = "Result not available";
-                    air_quality_index.innerText = "";
-                    aqi_span.innerText = "";
-                    aqi_desc.innerText = "";
-                    city_query.innerText = cityQuery;
-                    formResult.innerText = "";
-                }
+                });
             });
         }
         else if (str == "tool3") {
@@ -412,10 +402,10 @@
                    <section>
                     <div id="data">
                       <span>Harmful material present in our natural environment is called <b>pollution</b>. </span><span>This tool shows value
-                      of harmful gases present in the environment. Pollution can be present in many form, for example solid, liquid, or gas studies says. Reaction of harmful material causes environment to get polluted. Harmful gases increases in the environment, concludes how polluted specific environment. </span><span id="not_search_query">Enter your city tool can provide information about how much pollution is present in your environment. </span><span id="search_query"><span class="city_pollution"></span><span> data is present. Data of gases may exist. According to the data overall aqi is <span id="aqi_pollution"></span><span>. AQI means Air Quality Index. It is used for the quality of Air. More then 100 AQI defines poor quality, lesser then 100 show good Air Quality. Below is the concentration of pollutant gases data, it indicates pollution by providing calculation of pollutant material level in the air.
+                      of harmful gases present in the environment. Pollution can be present in many form, for example solid, liquid, or gas studies says. Reaction of harmful material causes environment to get polluted. Harmful gases increases in the environment, concludes how polluted specific environment. </span><span id="not_search_query">Enter your city tool can provide information about how much pollution is present in your environment. </span><span id="search_query"><h2 class="city_pollution"></h2><span> data is present. Data of gases may exist. According to the data overall aqi is <span id="aqi_pollution"></span><span>. AQI means Air Quality Index. It is used for the quality of Air. More then 100 AQI defines poor quality, lesser then 100 show good Air Quality. Below is the concentration of pollutant gases data, it indicates pollution by providing calculation of pollutant material level in the air.
                       <ul id="pollutant_pollution">
                       <li>
-                       <b>CO</b> stands for carbon monoxide. The concentration of carbon monoxide in <span class="city_pollution"></span> is <span id="co_pollution"></span><span>ppm. </span>According to studies 0.22363999999999998ppm for over 8 hours, level is considered safe for carbon monoxide. It is said 0.2ppm or more  for hours is worst or fatal.
+                       <b>CO</b> stands for carbon monoxide. The concentration of carbon monoxide in <span class="city_pollution"></span> is <span id="co_pollution"></span><span>ppm. </span>According to studies 0.22363999999999998ppm for over 8 hours, level is considered just safe for carbon monoxide. More then 0.2ppm for many hours probably worst research say.
                       </li>
                       <li>
                        <b>PM10</b> are small inhalable particles. With diameter of 10 micrometers or less, the concentration of PM10 in <span class="city_pollution"></span> is <span id="pmt10_pollution"></span><span>ppm. </span>According to studies less then 0.04 ppm is good, from 0.04 to 0.08ppm is concluded fair, more then 0.08ppm declares polluted environment.
@@ -491,47 +481,45 @@
                 const formResult = document.getElementById("formResult");
                 formResult.innerText = "It is pending...";
 
-                try {
-                    const dataIt = await axios({
-                        method: "GET",
-                        url: pinIt.api + "/v1/airquality?city=" + cityQuery,
-                        headers: { "X-Api-Key": pinIt.pin },
-                    });
-
-                    const { CO, PM10, SO2, NO2, O3, ...PMtwopointfive } = dataIt.data;
+                await fetch(pinIt.api + "/v1/airquality?city=" + cityQuery, {
+                    method: 'GET',
+                    headers: { "X-Api-Key": pinIt.pin },
+                }).then(result => result.json()).then(function (result) {
+                    if (!result.overall_aqi || result.error) {
+                        search_query.style.opacity = 0;
+                        search_query.style.width = "1px";
+                        formResult.innerText = "Result not available";
+                        city_pollution.forEach(function (e) {
+                            e.innerText = "";
+                        });
+                        aqi_pollution.innerText = "";
+                        co_pollution.innerText = "";
+                        pmt10_pollution.innerText = "";
+                        so2_pollution.innerText = "";
+                        pm2point5_pollution.innerText = "";
+                        o3_pollution.innerText = "";
+                        nitrogen_dioxide_pollution.innerText = "";
+                        source.style.display = "none";
+                        return 0;
+                    }
+                    const { CO, PM10, SO2, NO2, O3, ...PMtwopointfive } = result;
                     search_query.style.opacity = 1;
                     search_query.style.height = "max-content";
                     search_query.style.width = "100%";
                     search_query.style.display = "grid";
-                    formResult.innerText = "";
+                    formResult.innerHTML = "<div>&nbsp;</div>";
                     city_pollution.forEach(function (e) {
                         e.innerText = cityQuery[0].toUpperCase() + cityQuery.slice(1);
                     });
-                    aqi_pollution.innerText = dataIt.data.overall_aqi;
+                    aqi_pollution.innerText = result.overall_aqi;
                     co_pollution.innerText = CO.concentration / 1000;
                     pmt10_pollution.innerText = PM10.concentration / 1000;
                     so2_pollution.innerText = SO2.concentration / 1000;
                     nitrogen_dioxide_pollution.innerText = NO2.concentration / 1000;
                     o3_pollution.innerText = O3.concentration / 1000;
-                    pm2point5_pollution.innerText = PMtwopointfive["PM2.5"] / 1000;
+                    pm2point5_pollution.innerText = PMtwopointfive["PM2.5"].concentration / 1000;
                     source.style.display = "flex";
-
-                } catch (err) {
-                    search_query.style.opacity = 0;
-                    search_query.style.width = "1px";
-                    formResult.innerText = "Result not available";
-                    city_pollution.forEach(function (e) {
-                        e.innerText = "";
-                    });
-                    aqi_pollution.innerText = "";
-                    co_pollution.innerText = "";
-                    pmt10_pollution.innerText = "";
-                    so2_pollution.innerText = "";
-                    pm2point5_pollution.innerText = "";
-                    o3_pollution.innerText = "";
-                    nitrogen_dioxide_pollution.innerText = "";
-                    source.style.display = "none";
-                }
+                });
             });
 
         }
@@ -550,25 +538,6 @@
                     <strong onclick="tool('tool3')">Pollution</strong>
                 </div>`;
     }
-
-    air_quality.addEventListener("click", async function () {
-        // const cityQuery = "Multan";
-        // const dataIt = await axios({
-        //     method: "GET",
-        //     url: pinIt.api + "/v1/airquality?city=" + cityQuery,
-        //     headers: { "X-Api-Key": pinIt.pin },
-        // });
-        // const aqi_span = document.getElementById("aqi_span");
-        // const aqi_desc = document.getElementById("aqi_desc");
-        // const city_query = document.getElementById("city_query");
-        // const air_quality_index = document.getElementById("air_quality_index");
-        // const aqi_desc_statement = document.getElementById("aqi_desc_statement");
-        // aqi_span.innerText = dataIt.data.overall_aqi;
-        // aqi_desc.innerText = " AQI";
-        // city_query.innerText = cityQuery;
-        // air_quality_index.innerText = "(air quality Index)";
-        // aqi_desc_statement.innerText = `AQI means Air Quality Index. It is used for the quality of Air. More then 100 AQI defines poor quality, less show good Air Quality`;
-    })
 </script>
 
 </html>
