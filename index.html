@@ -33,7 +33,7 @@
             top: 0px;
             width: 100%;
             z-index: 1000;
-            background-color: transparent;
+            background-color: #03030300;
         }
 
         #eydtfjh {
@@ -66,8 +66,12 @@
             display: grid;
             gap: 12px;
             position: absolute;
-            top: 44%;
+            top: 50%;
             right: 3px;
+        }
+
+        #tools h1 {
+            color: #141313;
         }
 
         #tools * {
@@ -118,50 +122,59 @@
             justify-content: space-between;
         }
 
-        #tools .tool #air_quality form {
+        #tools .tool #diet {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #tools .tool #diet #desc #data {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #tools .tool #diet #desc #data,
+        h1,
+        .data {
+            padding: 10px;
+        }
+
+        #tools .tool #diet #desc #data,
+        h1 {
+            text-align: right;
+            width: 100%;
+        }
+
+        #tools .tool #diet #desc #data .data {
+            width: 70%;
+            min-height: 60vh;
+            background-color: white;
+            border: solid 1px black;
+        }
+
+        #tools .tool form {
             flex: 1;
             padding: 12px;
             background-color: #131212;
         }
 
-        #tools .tool #pollution form {
-            flex: 1;
-            padding: 12px;
-            background-color: #131212;
-        }
-
-        #tools .tool #air_quality form input,
+        #tools .tool form input,
         button {
             padding: 10px;
             border-radius: 3px;
             border: solid 1px gray;
         }
 
-        #tools .tool #pollution form input,
-        button {
-            padding: 10px;
-            border-radius: 3px;
-            border: solid 1px gray;
-        }
-
-        #tools .tool #air_quality form div {
+        #tools .tool form div {
             padding: 8px 0px 0px 0px;
             font-size: 10pt;
             color: #585858;
         }
 
-        #tools .tool #pollution form div {
-            padding: 8px 0px 0px 0px;
-            font-size: 10pt;
-            color: #585858;
-        }
-
-        #tools .tool #air_quality section {
-            flex: 1;
-            display: grid;
-        }
-
-        #tools .tool #pollution section {
+        #tools .tool section {
             flex: 1;
             display: grid;
         }
@@ -251,13 +264,59 @@
             font-size: 8px;
             position: fixed;
             bottom: 1px;
+            z-index: 118765400;
+            display: flex;
+            gap: 10px;
+            padding: 3px;
         }
 
+        #attribute * {
+            color: #585858;
+        }
+
+        #attribute #about_toggle:hover {
+            color: whitesmoke;
+        }
+
+        #about_toggle {
+            cursor: default;
+        }
+
+        #about {
+            position: absolute;
+            top: 0px;
+            z-index: 20000000000;
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            padding: 3% 15% 3% 15%;
+            display: none;
+            flex-direction: column;
+            gap: 3px;
+            color: white;
+        }
+
+        #about h1 {
+            text-align: left;
+        }
+
+        #about #vh {
+            font-size: 10px;
+            text-align: right;
+        }
 
         @media (max-width:1069px) {
             main {
                 background-position-x: -620px;
                 background-position-y: 50vh;
+            }
+
+            #tools .tool #diet {
+                flex-direction: column;
+            }
+
+            #tools .tool #diet section {
+                flex: 10;
             }
 
             #tools .tool #pollution {
@@ -278,9 +337,23 @@
             }
         }
     </style>
+    <style>
+
+    </style>
 </head>
 
 <body>
+    <!-- /component about/ -->
+    <section id="about">
+        <h1 id="h1"></h1>
+        <section id="section_data">
+        </section>
+        <section id="vh">
+        </section>
+        <button id="close_component">Shut</button>
+    </section>
+
+    <!-- //component main -->
     <main id="main">
         <div onclick="abc()" id="tools_btn">Shut</div>
         <div id="hjvtr"></div>
@@ -303,18 +376,20 @@
         </div>
         <div id="tools">
             <h1>Medical Tools</h1>
-            <div>
+            <div class="title">
                 <strong onclick="tool('tool1')">Diet</strong>
             </div>
-            <div>
+            <div class="title">
                 <strong id="air_quality" onclick="tool('tool2')">Air Quality</strong>
             </div>
-            <div>
+            <div class="title">
                 <strong onclick="tool('tool3')">Pollution</strong>
             </div>
         </div>
         <code id="attribute">
-                visitheart.com
+                <div id="about_toggle">About</div>
+                <div>|</div>
+                <div>visitheart.com</div>
             </code>
     </main>
 </body>
@@ -330,8 +405,23 @@
         if (str == "tool1") {
             console.log("tool 1");
             tools.innerHTML = `<div class="tool">
-                   <div class="content">Diet</div>
-       </div`;
+                   <div class="content" id="diet">
+                    <form id="form">
+                     <h1>Diet</h1>
+                     <input disabled id="formInput" required  placeholder="diet" type="text"/>
+                     <button disabled id="formBtn">Diet</button>
+                     <div id="formResult">&nbsp;</div>
+                    </form>
+                    <section id="desc">
+                      <div id="data">
+                       <h1>Diet</h1>
+                       <div class="data">
+                         Pending
+                       </div>  
+                      </div>
+                    </section>
+                    </div>
+                </div>`;
         }
         else if (str == "tool2") {
             tools.innerHTML = `<div class="tool">
@@ -528,16 +618,46 @@
     function abc() {
         tools_btn.style.opacity = "0";
         tools.innerHTML = `<h1>Medical Tools</h1>
-                <div>
+                <div class="title">
                     <strong onclick="tool('tool1')">Diet</strong>
                 </div>
-                <div>
+                <div class="title">
                     <strong onclick="tool('tool2')">Air Quality</strong>
                 </div>
-                <div>
+                <div class="title">
                     <strong onclick="tool('tool3')">Pollution</strong>
                 </div>`;
     }
+
+
+
+
+    //
+    const str = [60, 100, 105, 118, 62, 73, 116, 32, 105, 115, 32, 103, 114, 101, 97, 116, 32, 116, 111, 32, 104, 97, 118, 101, 32, 121, 111, 117, 32, 111, 110, 32, 118, 105, 115, 105, 116, 104, 101, 97, 114, 116, 32, 119, 101, 98, 115, 105, 116, 101, 46, 32, 84, 104, 105, 115, 32, 119, 101, 98, 115, 105, 116, 101, 32, 104, 97, 115, 32, 108, 105, 110, 107, 115, 32, 116, 111, 32, 116, 111, 111, 108, 115, 44, 32, 97, 114, 101, 32, 112, 114, 111, 98, 97, 98, 108, 121, 32, 98, 101, 110, 101, 102, 105, 99, 105, 97, 108, 32, 102, 111, 114, 32, 100, 97, 105, 108, 121, 32, 99, 105, 114, 99, 117, 109, 115, 116, 97, 110, 99, 101, 115, 44, 32, 116, 104, 105, 115, 32, 119, 101, 98, 115, 105, 116, 101, 32, 100, 111, 101, 115, 110, 111, 116, 32, 112, 114, 111, 118, 105, 100, 101, 32, 97, 110, 121, 32, 116, 114, 101, 97, 116, 109, 101, 110, 116, 32, 98, 117, 116, 32, 105, 115, 32, 99, 111, 110, 116, 114, 105, 98, 117, 116, 105, 111, 110, 32, 102, 111, 114, 32, 109, 101, 100, 105, 99, 97, 108, 32, 105, 110, 102, 111, 114, 109, 97, 116, 105, 111, 110, 46, 60, 47, 100, 105, 118, 62, 60, 100, 105, 118, 62, 84, 111, 111, 108, 32, 97, 114, 101, 32, 112, 114, 111, 118, 105, 100, 101, 100, 32, 97, 115, 32, 97, 110, 32, 99, 111, 110, 116, 114, 105, 98, 117, 116, 105, 111, 110, 44, 32, 116, 104, 101, 115, 101, 32, 109, 97, 121, 32, 117, 115, 101, 32, 116, 104, 105, 114, 100, 32, 112, 97, 114, 116, 121, 32, 65, 80, 73, 46, 32, 84, 104, 105, 114, 100, 32, 112, 97, 114, 116, 121, 32, 65, 80, 73, 32, 97, 114, 101, 32, 119, 105, 116, 104, 32, 116, 104, 101, 114, 101, 32, 114, 117, 108, 101, 115, 46, 60, 47, 100, 105, 118, 62, 60, 100, 105, 118, 62, 87, 101, 98, 115, 105, 116, 101, 32, 99, 97, 110, 32, 117, 115, 101, 32, 73, 110, 116, 101, 114, 110, 101, 116, 32, 67, 111, 111, 107, 105, 101, 115, 46, 32, 84, 104, 101, 115, 101, 32, 67, 111, 111, 107, 105, 101, 115, 32, 97, 114, 101, 32, 117, 115, 101, 100, 32, 116, 111, 32, 112, 114, 111, 118, 105, 100, 101, 32, 118, 105, 101, 119, 101, 114, 32, 104, 101, 108, 112, 46, 32, 65, 115, 32, 100, 101, 118, 101, 108, 111, 112, 101, 114, 115, 32, 97, 114, 101, 32, 100, 111, 105, 110, 103, 32, 119, 111, 114, 107, 32, 116, 111, 32, 112, 114, 111, 118, 105, 100, 101, 32, 101, 97, 114, 116, 104, 32, 116, 104, 101, 32, 98, 101, 115, 116, 32, 116, 104, 101, 121, 32, 99, 97, 110, 44, 32, 116, 111, 32, 99, 114, 101, 97, 116, 101, 32, 115, 111, 102, 116, 119, 97, 114, 101, 32, 103, 101, 116, 116, 105, 110, 103, 32, 98, 108, 101, 115, 115, 32, 102, 114, 111, 109, 32, 112, 101, 111, 112, 108, 101, 44, 32, 112, 114, 111, 118, 105, 100, 105, 110, 103, 32, 108, 97, 114, 103, 101, 32, 110, 117, 109, 98, 101, 114, 32, 97, 115, 32, 99, 111, 110, 116, 114, 105, 98, 117, 116, 105, 111, 110, 32, 116, 104, 97, 110, 107, 32, 121, 111, 117];
+    document.getElementById("h1").innerText = "About";
+    document.getElementById("section_data").innerHTML = String.fromCharCode(...str);
+    document.getElementById("vh").innerHTML = `<div>All Rights reserved ${new Date().getFullYear()}</div><div>visitheart.com</div>`;
+    document.getElementById("about_toggle").addEventListener("click", function () {
+        document.getElementById("about").style.display = "flex";
+        document.getElementById("about").style.opacity = ".2";
+        setTimeout(function () {
+            document.getElementById("about").style.opacity = ".8";
+        }, 1000);
+        setTimeout(function () {
+            document.getElementById("about").style.opacity = "1";
+        }, 2000);
+    });
+    document.getElementById("close_component").addEventListener("click", function () {
+        document.getElementById("about").style.opacity = ".8";
+        setTimeout(function () {
+            document.getElementById("about").style.opacity = ".2";
+        }, 1000);
+        setTimeout(function () {
+            document.getElementById("about").style.opacity = "0";
+            document.getElementById("about").style.display = "none";
+        }, 2000);
+    });
+    //
 </script>
 
 </html>
